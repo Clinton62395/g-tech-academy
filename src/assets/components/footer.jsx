@@ -8,30 +8,42 @@ import {
   HiOutlinePhone,
   HiArrowUp,
 } from "react-icons/hi";
-import axios from "axios";
+import { Mail, MailCheckIcon } from "lucide-react";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const handleNewsletter = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     try {
-      await axios.post("https://formspree.io/f/xdayawvy", { email });
+      const res = await fetch("https://formspree.io/f/xdayawvy", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) throw new Error("Erreur lors de l'envoi");
 
       setSuccess(true);
       setEmail("");
 
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      console.error(err);
+      setError("Impossible de s'inscrire. Réessayez.");
     } finally {
       setLoading(false);
     }
   };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -47,13 +59,13 @@ export default function Footer() {
           {/* 1. Identity */}
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-white">
-              Clinton<span className="text-cyan-400">DevOps</span>
+              G-tech<span className="text-cyan-400">-academy</span>
             </h2>
 
             <p className="text-gray-400 text-sm leading-relaxed">
-              Développeur web et formateur tech. J’aide les jeunes en Guinée à
-              construire une carrière solide dans la tech avec des projets
-              concrets.
+              Startup tech guinéenne spécialisée en formation et développement
+              web. G-tech-academy aide les jeunes à lancer leur carrière avec
+              des projets concrets.
             </p>
 
             {/* Social */}
@@ -78,18 +90,22 @@ export default function Footer() {
             </h3>
 
             <ul className="space-y-4">
-              {["services", "portfolio", "formations", "testimonials"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href={`#${item}`}
-                      className="text-gray-400 hover:text-cyan-400 text-sm transition-colors"
-                    >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
-                    </a>
-                  </li>
-                ),
-              )}
+              {[
+                "services",
+                "portfolio",
+                "formations",
+                "testimonials",
+                "contact",
+              ].map((item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item}`}
+                    className="text-gray-400 hover:text-cyan-400 text-sm transition-colors"
+                  >
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -114,13 +130,13 @@ export default function Footer() {
               </li>
 
               <li className="flex items-center gap-3">
-                <HiOutlineMail className="text-purple-400" size={18} />
-                contact@clintondevops.com
+                <MailCheckIcon className="text-purple-400" size={18} />
+                billydoumbouya5210@gmail.com
               </li>
             </ul>
           </div>
 
-          {/* 4. CTA Newsletter */}
+          {/* 4. Newsletter */}
           <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
             <h3 className="text-white font-semibold mb-2">Restez informé 🚀</h3>
 
@@ -133,23 +149,27 @@ export default function Footer() {
                 ✅ Inscription réussie !
               </p>
             ) : (
-              <form onSubmit={handleNewsletter} className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Votre email"
-                  required
-                  className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-400"
-                />
+              <form onSubmit={handleNewsletter} className="space-y-2">
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Votre email"
+                    required
+                    className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-400"
+                  />
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="bg-cyan-500 hover:bg-cyan-400 text-white px-3 py-2 rounded-lg transition text-xs"
-                >
-                  {loading ? "..." : "OK"}
-                </button>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="bg-cyan-500 hover:bg-cyan-400 text-white px-3 py-2 rounded-lg transition text-xs"
+                  >
+                    {loading ? "..." : "OK"}
+                  </button>
+                </div>
+
+                {error && <p className="text-red-400 text-xs">{error}</p>}
               </form>
             )}
           </div>
@@ -158,7 +178,7 @@ export default function Footer() {
         {/* BOTTOM BAR */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
-            © {new Date().getFullYear()} Clinton DevOps. Tous droits réservés.
+            © {new Date().getFullYear()} G-tech-academy. Tous droits réservés.
           </p>
 
           <button

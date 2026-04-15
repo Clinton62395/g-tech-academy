@@ -53,8 +53,8 @@ export default function Hero() {
           custom={2}
           className="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
         >
-          Clinton DevOps vous accompagne de débutant à professionnel avec une
-          formation 100% pratique basée sur des projets réels.
+          G-tech-academy accompagne les débutants vers une carrière tech solide
+          avec une formation 100% pratique basée sur des projets réels.
         </motion.p>
 
         {/* Buttons */}

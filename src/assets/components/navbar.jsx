@@ -17,7 +17,9 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Témoignages", href: "#testimonies" },
+    { name: "Portfolio", href: "#portfolio" },
+    { name: "Formations", href: "#formations" },
+    { name: "Témoignages", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -37,11 +39,10 @@ export default function Navbar() {
           className="flex items-center gap-2"
         >
           <div className="w-10 h-10 bg-gradient-to-br from-brandCyan to-brandViolet rounded-lg flex items-center justify-center shadow-lg shadow-brandCyan/20">
-            {/* <Rocket size={20} className="text-white" /> */}
             <img src="./logo.png" alt="G-tech-academy" className="w-15" />
           </div>
           <span className="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Clinton DevOps
+            G-tech-academy
           </span>
         </motion.div>
 
