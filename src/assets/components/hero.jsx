@@ -39,10 +39,7 @@ export default function Hero() {
           custom={1}
           className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
         >
-          Apprenez la tech et lancez votre{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brandCyan to-brandViolet">
-            carrière dès aujourd’hui
-          </span>
+          Apprenez la technologie et lancez votre carrière dès aujourd’hui
         </motion.h1>
 
         {/* Subtitle */}

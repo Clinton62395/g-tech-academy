@@ -5,11 +5,30 @@ import { Menu, X, Rocket } from "lucide-react";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   // Détecter le scroll pour changer le style de la navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Détecter la section active
+      const sections = [
+        "services",
+        "portfolio",
+        "formations",
+        "testimonials",
+        "contact",
+      ];
+      const current = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      setActiveSection(current || "");
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -52,7 +71,11 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-300 hover:text-brandCyan transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                activeSection === link.href.slice(1)
+                  ? "text-brandCyan"
+                  : "text-gray-300 hover:text-brandCyan"
+              }`}
             >
               {link.name}
             </a>
@@ -89,7 +112,11 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-gray-300 hover:text-brandCyan"
+                  className={`text-lg font-medium transition-colors ${
+                    activeSection === link.href.slice(1)
+                      ? "text-brandCyan"
+                      : "text-gray-300 hover:text-brandCyan"
+                  }`}
                 >
                   {link.name}
                 </a>

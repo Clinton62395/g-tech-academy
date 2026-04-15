@@ -3,28 +3,40 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Site E-commerce Guinée",
-    desc: "Plateforme de vente en ligne pour artisans locaux avec paiement mobile.",
+    title: "Easiland Pay",
+    desc: "Marketplace immobilière multiple rôles : buyer, seller, admin et enterprise.",
+    tech: ["Node.js", "Express", "MongoDB", "React"],
+    demo: "https://easiland-kappa.vercel.app/",
+    code: "#",
+  },
+  {
+    title: "E-commerce Premium",
+    desc: "Boutique en ligne complète avec gestion de produits, paiement et tableau d'administration.",
     tech: ["React", "Node.js", "MongoDB"],
-    image: "/api/placeholder/400/300",
-    demo: "#",
+    demo: "https://e-commerce-project-azure-five.vercel.app/",
     code: "#",
   },
   {
-    title: "App de Gestion Scolaire",
-    desc: "Système de suivi des élèves et notes pour écoles guinéennes.",
-    tech: ["Vue.js", "Firebase", "Tailwind"],
-    image: "/api/placeholder/400/300",
-    demo: "#",
+    title: "Billy Fullstack",
+    desc: "Portfolio fullstack et vitrine personnelle avec animations premium.",
+    tech: ["React", "Node.js", "Tailwind"],
+    demo: "https://billy-fullstack.vercel.app/",
     code: "#",
   },
   {
-    title: "Portfolio Développeur",
-    desc: "Site vitrine moderne avec animations et design premium.",
-    tech: ["React", "Framer Motion", "Tailwind"],
-    image: "/api/placeholder/400/300",
-    demo: "#",
+    title: "Plateforme d'affiliation",
+    desc: "Solution e-commerce affiliée avec le même stack que le site e-commerce principal.",
+    tech: ["React", "Node.js", "MongoDB"],
+    demo: "https://affinatesale.vercel.app/",
     code: "#",
+  },
+  {
+    title: "EduTrack Mobile",
+    desc: "Appli mobile Firebase pour e-learning : chat, certificats, progression et notifications.",
+    tech: ["Firebase", "React Native", "Realtime DB"],
+    demo: "https://com-billydoumbouya-edutrack.en.uptodown.com/android",
+    code: "#",
+    isDownload: true,
   },
 ];
 
@@ -79,21 +91,23 @@ export default function Portfolio() {
                   ))}
                 </div>
 
-                <div className="flex gap-3">
-                  <a
-                    href={project.demo}
-                    className="flex items-center gap-2 text-sm text-brandCyan hover:underline"
+                <div className="flex gap-3 flex-wrap">
+                  <button
+                    onClick={() => window.open(project.demo, "_blank")}
+                    className="flex items-center gap-2 text-sm text-brandCyan hover:underline cursor-pointer"
                   >
                     <ExternalLink size={16} />
-                    Demo
-                  </a>
-                  <a
-                    href={project.code}
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white"
-                  >
-                    <Github size={16} />
-                    Code
-                  </a>
+                    {project.isDownload ? "Télécharger" : "Demo"}
+                  </button>
+                  {project.code && project.code !== "#" && (
+                    <button
+                      onClick={() => window.open(project.code, "_blank")}
+                      className="flex items-center gap-2 text-sm text-gray-400 hover:text-white cursor-pointer"
+                    >
+                      <Github size={16} />
+                      Code
+                    </button>
+                  )}
                 </div>
               </div>
 
