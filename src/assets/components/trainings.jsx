@@ -1,37 +1,50 @@
 import { motion } from "framer-motion";
-import { Clock, Users, Target, Award } from "lucide-react";
+import { Clock, Target, Award, Rocket } from "lucide-react";
 
 const trainings = [
   {
-    level: "Débutant",
-    title: "Initiation à l'Informatique",
-    duration: "1 mois",
-    results: "Maîtrise des bases : navigation, bureautique, internet",
-    price: "À partir de 50 000 GNF",
+    level: "Base Professionnelle",
+    title: "Bureautique & Microsoft 365",
+    duration: "1 mois intensif",
+    results:
+      "De zéro à opérationnel : Word, Excel, PowerPoint + création CV professionnel.",
+    bonus: "🎁 CV + simulation entretien offerte",
+    price: "250 000 GNF",
+    anchor: "Accessible à tous",
     icon: Target,
   },
   {
-    level: "Intermédiaire",
+    level: "Métier Digital",
     title: "Développement Web Complet",
     duration: "3 mois",
-    results: "Créer sites web modernes, comprendre les APIs",
-    price: "À partir de 200 000 GNF",
+    results:
+      "Apprenez HTML, CSS, JS + créez vos premiers sites réels (portfolio inclus).",
+    bonus: "🔥 Projets concrets + accompagnement freelance",
+    price: "400 000 GNF / mois",
+    anchor: "Investissement carrière",
+    highlight: true,
     icon: Clock,
   },
   {
-    level: "Avancé",
-    title: "React Native & Applications Mobiles",
-    duration: "4 mois",
-    results: "Construire des applications mobiles natives pour Android et iOS",
-    price: "Sur devis",
-    icon: Award,
+    level: "International 🌍",
+    title: "Python Data Science (Online)",
+    duration: "Flexible",
+    results: "Travaillez avec un expert basé au Nigeria. Automation, Data, IA.",
+    bonus: "⚠️ 100% en anglais – niveau intermédiaire requis",
+    price: "À partir de 900 000 GNF / mois",
+    anchor: "Programme élite",
+    isPartner: true,
+    icon: Rocket,
   },
   {
-    level: "Expert",
-    title: "Full Stack + Projet Personnel",
+    level: "Parcours Elite",
+    title: "Full Stack & Mobile",
     duration: "6 mois",
-    results: "Développeur complet avec portfolio professionnel",
-    price: "Sur devis",
+    results:
+      "Formation complète pour devenir développeur professionnel + projets réels + mentorat.",
+    bonus: "🚀 Objectif : gagner vos premiers revenus tech",
+    price: "À partir de 1 200 000 GNF / mois",
+    anchor: "Transformation totale",
     icon: Award,
   },
 ];
@@ -40,87 +53,94 @@ export default function Trainings() {
   return (
     <section id="formations" className="py-24 px-6 bg-white/5 backdrop-blur-sm">
       <div className="container mx-auto">
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold mb-6">
-            Formations <span className="text-brandCyan">Tech</span>
+            Transforme ta vie avec le{" "}
+            <span className="text-brandCyan">digital</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Programmes intensifs orientés emploi pour jeunes guinéens. Formation
-            pratique + projets réels.
+            Nos formations ne sont pas pour tout le monde. Elles sont conçues
+            pour ceux qui veulent apprendre une compétence rentable et passer à
+            l’action rapidement.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        {/* CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {trainings.map((training, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl hover:border-brandCyan/50 transition-all group"
+              className={`p-8 rounded-2xl border transition-all group ${
+                training.highlight
+                  ? "bg-brandCyan/10 border-brandCyan scale-105"
+                  : training.isPartner
+                    ? "bg-brandViolet/10 border-brandViolet/30"
+                    : "bg-white/5 border-white/10"
+              }`}
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-brandCyan/10 rounded-xl flex items-center justify-center">
-                  <training.icon className="text-brandCyan" size={24} />
-                </div>
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-brandViolet font-semibold">
-                    {training.level}
-                  </span>
-                  <h3 className="text-xl font-bold text-white">
-                    {training.title}
-                  </h3>
-                </div>
+              {/* HEADER */}
+              <div className="mb-6">
+                <span className="text-xs uppercase tracking-widest opacity-60">
+                  {training.level}
+                </span>
+                <h3 className="text-xl font-bold text-white mt-2">
+                  {training.title}
+                </h3>
               </div>
 
-              <div className="space-y-4 mb-6">
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <Clock size={16} />
-                  Durée: {training.duration}
-                </div>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <Users size={16} />
-                  Résultats: {training.results}
-                </div>
+              {/* CONTENT */}
+              <p className="text-gray-400 text-sm mb-4">{training.results}</p>
+
+              <p className="text-xs text-gray-500 mb-3">
+                ⏱ {training.duration}
+              </p>
+
+              <p className="text-xs text-green-400 mb-6">{training.bonus}</p>
+
+              {/* PRICE */}
+              <div className="mb-2">
+                <span className="text-2xl font-bold text-white">
+                  {training.price}
+                </span>
               </div>
 
-              <div className="text-brandCyan font-semibold text-lg">
-                {training.price}
-              </div>
+              <p className="text-xs text-gray-500 mb-6">{training.anchor}</p>
 
+              {/* CTA */}
               <a
                 href="#contact"
-                className="block w-full mt-6 py-3 bg-brandCyan hover:bg-cyan-500 text-white font-bold rounded-xl text-center transition-all"
+                className={`block w-full py-3 rounded-xl text-center font-bold transition-all ${
+                  training.isPartner
+                    ? "bg-brandViolet hover:bg-purple-500"
+                    : "bg-brandCyan hover:bg-cyan-500"
+                } text-white`}
               >
-                S'inscrire
+                {training.isPartner
+                  ? "Postuler (Anglais requis)"
+                  : "Réserver ma place"}
               </a>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <p className="text-sm text-gray-400 mb-4">
-            💼 Formation orientée emploi - Passe de débutant à professionnel
+        {/* FOOTER CTA */}
+        <div className="text-center mt-16">
+          <p className="text-gray-400 mb-4">
+            ⚠️ Places limitées – Nous sélectionnons les étudiants motivés
           </p>
+
           <a
             href="#contact"
-            className="inline-block px-8 py-4 bg-gradient-to-r from-brandCyan to-brandViolet text-white font-bold rounded-xl hover:scale-105 transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+            className="inline-block px-8 py-4 bg-gradient-to-r from-brandCyan to-brandViolet text-white font-bold rounded-xl hover:scale-105 transition-all"
           >
-            Commencer ma formation
+            Je veux changer ma situation
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

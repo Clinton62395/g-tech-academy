@@ -4,7 +4,7 @@ import { ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     title: "Easiland Pay",
-    desc: "Marketplace immobilière multiple rôles : buyer, seller, admin et enterprise.",
+    desc: "Bien plus qu'une marketplace, c'est un écosystème complet qui simplifie l'immobilier en connectant acheteurs, vendeurs et entreprises autour d'une interface de confiance.",
     tech: ["Node.js", "Express", "MongoDB", "React"],
     demo: "https://easiland-kappa.vercel.app/",
     code: "#",
@@ -12,7 +12,7 @@ const projects = [
   },
   {
     title: "E-commerce Premium",
-    desc: "Boutique en ligne complète avec gestion de produits, paiement et tableau d'administration.",
+    desc: "Une expérience d'achat fluide et intuitive. J'ai conçu cette boutique pour offrir aux utilisateurs une navigation sans friction et aux administrateurs un contrôle total sur leur business.",
     tech: ["React", "Node.js", "MongoDB"],
     demo: "https://e-commerce-project-azure-five.vercel.app/",
     code: "#",
@@ -20,7 +20,7 @@ const projects = [
   },
   {
     title: "Billy Fullstack",
-    desc: "Portfolio fullstack et vitrine personnelle avec animations premium.",
+    desc: "Mon univers numérique. Un espace où le code rencontre le design, conçu avec des animations soignées pour refléter ma passion pour les interfaces modernes et dynamiques.",
     tech: ["React", "Node.js", "Tailwind"],
     demo: "https://billy-fullstack.vercel.app/",
     code: "#",
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: "Plateforme d'affiliation",
-    desc: "Solution e-commerce affiliée avec le même stack que le site e-commerce principal.",
+    desc: "Optimiser les ventes grâce au réseau. Cette solution permet de transformer l'e-commerce classique en un levier de croissance partagé entre vendeurs et affiliés.",
     tech: ["React", "Node.js", "MongoDB"],
     demo: "https://affinatesale.vercel.app/",
     code: "#",
@@ -36,7 +36,7 @@ const projects = [
   },
   {
     title: "EduTrack Mobile",
-    desc: "Appli mobile Firebase pour e-learning : chat, certificats, progression et notifications.",
+    desc: "Mon projet cœur. Une application conçue pour briser les barrières de l'éducation en Guinée, permettant d'apprendre, de progresser et d'obtenir des certificats, même avec une connexion instable.",
     tech: ["Firebase", "React Native", "Realtime DB"],
     demo: "https://com-billydoumbouya-edutrack.en.uptodown.com/android",
     code: "#",
@@ -44,7 +44,6 @@ const projects = [
     image: "/edutrack.png",
   },
 ];
-
 // ... (tes imports et ton tableau projects restent les mêmes)
 
 export default function Portfolio() {

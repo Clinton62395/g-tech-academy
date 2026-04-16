@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Rocket } from "lucide-react";
 
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import {
@@ -137,39 +138,54 @@ export default function Footer() {
           </div>
 
           {/* 4. Newsletter */}
-          <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md">
-            <h3 className="text-white font-semibold mb-2">Restez informé 🚀</h3>
+          {/* 4. Newsletter - Version Améliorée */}
+          <div className="p-4 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md shadow-2xl">
+            <h3 className="text-white font-bold mb-3 flex items-center gap-2">
+              Restez informé <Rocket size={18} className="text-cyan-400" />
+            </h3>
 
-            <p className="text-gray-400 text-xs mb-4">
-              Conseils tech + formations + opportunités.
+            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+              Conseils tech, nouvelles formations et opportunités exclusives.
             </p>
 
             {success ? (
-              <p className="text-green-400 text-xs font-medium">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 text-sm font-medium text-center"
+              >
                 ✅ Inscription réussie !
-              </p>
+              </motion.div>
             ) : (
-              <form onSubmit={handleNewsletter} className="space-y-2">
-                <div className="flex gap-2">
+              <form onSubmit={handleNewsletter} className="flex flex-col gap-3">
+                <div className="relative group">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Votre email"
+                    placeholder="votre@email.com"
                     required
-                    className="w-full bg-slate-900 border border-white/10 rounded-lg px-3 py-2 text-xs text-white outline-none focus:border-cyan-400"
+                    className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-4 text-sm text-white outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/30 transition-all placeholder:text-gray-600"
                   />
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="bg-cyan-500 hover:bg-cyan-400 text-white px-3 py-2 rounded-lg transition text-xs"
-                  >
-                    {loading ? "..." : "OK"}
-                  </button>
+                  <Mail
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 group-focus-within:text-cyan-400 transition-colors"
+                    size={18}
+                  />
                 </div>
 
-                {error && <p className="text-red-400 text-xs">{error}</p>}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white py-4 rounded-xl transition-all font-bold text-sm shadow-lg shadow-cyan-500/20 active:scale-[0.98] disabled:opacity-50"
+                >
+                  {loading ? "Chargement..." : "S'abonner à la newsletter"}
+                </button>
+
+                {error && (
+                  <p className="text-red-400 text-xs mt-2 text-center">
+                    {error}
+                  </p>
+                )}
               </form>
             )}
           </div>
